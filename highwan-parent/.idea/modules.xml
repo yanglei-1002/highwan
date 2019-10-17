@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/highwan-cloud/highwan-api/highwan-api.iml" filepath="$PROJECT_DIR$/highwan-cloud/highwan-api/highwan-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/highwan-base/highwan-base.iml" filepath="$PROJECT_DIR$/highwan-base/highwan-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/highwan-cloud/highwan-cloud.iml" filepath="$PROJECT_DIR$/highwan-cloud/highwan-cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/highwan-cloud/highwan-eureka/highwan-eureka.iml" filepath="$PROJECT_DIR$/highwan-cloud/highwan-eureka/highwan-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/highwan-cloud/highwan-mgr/highwan-mgr.iml" filepath="$PROJECT_DIR$/highwan-cloud/highwan-mgr/highwan-mgr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/highwan-base/highwan-mybatis/highwan-mybatis.iml" filepath="$PROJECT_DIR$/highwan-base/highwan-mybatis/highwan-mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/highwan-parent.iml" filepath="$PROJECT_DIR$/highwan-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/highwan-cloud/highwan-party/highwan-party.iml" filepath="$PROJECT_DIR$/highwan-cloud/highwan-party/highwan-party.iml" />
+      <module fileurl="file://$PROJECT_DIR$/highwan-base/highwan-redis/highwan-redis.iml" filepath="$PROJECT_DIR$/highwan-base/highwan-redis/highwan-redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/highwan-cloud/highwan-user/highwan-user.iml" filepath="$PROJECT_DIR$/highwan-cloud/highwan-user/highwan-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/highwan-base/highwan-util/highwan-util.iml" filepath="$PROJECT_DIR$/highwan-base/highwan-util/highwan-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/highwan-cloud/highwan-web/highwan-web.iml" filepath="$PROJECT_DIR$/highwan-cloud/highwan-web/highwan-web.iml" />
+    </modules>
+  </component>
+</project>

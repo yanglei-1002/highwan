@@ -1,0 +1,4 @@
+2019-09-04 14:32:04,133 INFO [main] c.c.highwan.user.UserApplication [StartupInfoLogger.java : 50] Starting UserApplication on DESKTOP-BHV3A4O with PID 7996 (G:\workspace\highwan-parent\highwan-cloud\highwan-user\target\classes started by Shinelon in G:\workspace\highwan-parent\highwan-cloud\highwan-user)
+2019-09-04 14:32:04,150 DEBUG [main] c.c.highwan.user.UserApplication [StartupInfoLogger.java : 53] Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-09-04 14:32:04,153 INFO [main] c.c.highwan.user.UserApplication [SpringApplication.java : 675] No active profile set, falling back to default profiles: default
+2019-09-04 14:32:24,924 INFO [main] c.c.highwan.user.UserApplication [StartupInfoLogger.java : 59] Started UserApplication in 22.465 seconds (JVM running for 29.657)

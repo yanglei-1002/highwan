@@ -1,0 +1,205 @@
+[#include "/setting.html"]
+[#import "/setting.html" as setting] 
+[@setting.html title='嗨玩网管理台' ]
+<div id ="app" style="padding:10px;">
+	<div style="padding: 10px 15px;border-bottom:1px solid #ccc;">
+		<el-breadcrumb separator="/">
+		  	<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+		  	<el-breadcrumb-item>菜单管理</el-breadcrumb-item>
+		</el-breadcrumb>
+  	</div>
+	<div style="padding: 10px 15px">
+		<el-row>
+			<el-col :span="10"> 
+           	 	<el-row  :gutter="20"> 
+           	 	 	<el-col :span="16"> 
+	           	 	 	<div class="grid-content bg-purple">
+		                	<el-input style="display: inline-block;" size="small" placeholder="名称、编号" prefix-icon="el-icon-search" v-model="searchText" :on-icon-click="searchClick" @keyup.enter.native="searchClick"> </el-input> 
+	           	 	 	</div>
+	            	</el-col>
+           	 	 	<el-col :span="8"> 
+	           	 	 	<div class="grid-content bg-purple">
+		            		<el-button @click="searchClick" style="display: inline-block;" size="small" type="primary" icon="el-icon-search" >搜索</el-button>
+	           	 	 	</div>
+	            	</el-col>
+            	</el-row>
+            </el-col>
+			<el-col :span="14" style="float: right;text-align: right;">
+				<el-button size="small" type="primary" icon="el-icon-refresh"  @click="refresh">刷新</el-button>
+				<el-button size="small" type="primary" icon="plus" @click="add" >新增</el-button>
+			</el-col>
+		</el-row>
+  	</div>
+  	<center>
+		<template>
+			<el-table :data="tableData" style="width: 100%">
+				<el-table-column type="index" width="50"></el-table-column>
+				<el-table-column prop="name" label="菜单名称" width="500"></el-table-column>
+		      	<el-table-column prop="url" label="菜单路径" width="500" :show-overflow-tooltip="true"></el-table-column>
+		      	<el-table-column label="操作" width="500">
+	 				<template scope="scope">
+						<i class="el-icon-edit" title="编辑" @click="edit(scope.$index, scope.row)" style="cursor: pointer"></i>
+						&nbsp;&nbsp;
+						<i class="el-icon-delete" title="删除" @click="updateDel(scope.$index, scope.row)" style="cursor: pointer"></i>
+					</template>
+				</el-table-column>
+	    	</el-table>
+	  	</template>
+		<div style="margin: 20px auto;">
+		    <el-pagination
+		      @size-change="handleSizeChange"
+		      @current-change="handleCurrentChange"
+		      :current-page="currentPage"
+		      :page-sizes="${pagesizes}"
+		      :page-size="${pagesize}"
+		      layout="total, sizes, prev, pager, next, jumper"
+		      :total="pageTotal">
+		    </el-pagination>
+	  	</div>
+  	</center>
+  	
+	<el-dialog title="菜单新增或修改" :visible.sync="dialogFormVisible">
+	  <el-form :model="detail">
+	    <el-form-item label="菜单名称" label-width="100px">
+	      <el-input v-model="detail.name" autocomplete="off"></el-input>
+	    </el-form-item>
+	    <el-form-item label="菜单路径" label-width="100px">
+	      <el-input v-model="detail.url" autocomplete="off"></el-input>
+	    </el-form-item>
+	    <el-form-item label="菜单排序" label-width="100px">
+	      <el-input v-model="detail.sort" autocomplete="off"></el-input>
+	    </el-form-item>
+	    <el-form-item label="父菜单" label-width="100px">
+	      <el-cascader :options="treeNodes" :props="props" v-model="parentNode" :show-all-levels="false" clearable></el-cascader>
+	    </el-form-item>
+	  </el-form>
+	  <div slot="footer" class="dialog-footer">
+	    <el-button @click="dialogFormVisible = false">取 消</el-button>
+	    <el-button type="primary" @click="confirm">确 定</el-button>
+	  </div>
+	</el-dialog>
+</div>
+<script type="text/javascript">
+	var main = {
+		data:function() {
+			return {
+				tableData:[],
+				pageTotal:0,
+				currentPage:1,
+				currentPageSize:"${currentPageSize}",
+				searchText:"",
+				dialogFormVisible:false,
+				detail:{},
+				treeNodes:[],
+				parentNode:[],
+				props: {
+			          value: 'id',
+			          label: 'name',
+			          children: 'childs',
+			          checkStrictly: true
+			    	}
+	      	};
+		},
+	    methods: {
+	    	handleSizeChange:function(val) { 
+                this.currentPageSize=val; 
+                this.currentPage=1; 
+                this.searchClick(); 
+	    	},
+            handleCurrentChange:function(val) { 
+                this.currentPage=val;
+                this.searchClick();
+            },
+			searchClick:function(){
+				var that = this;
+				axios.post("/menu/list",{
+						pageSize:that.currentPageSize,
+						pageIndex:that.currentPage
+					})
+					.then(function (response) {
+						that.tableData = response.data.data.records;
+						that.pageTotal = response.data.data.total;
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+				axios.get("/menu/menuTree")
+					.then(function (response) {
+						that.treeNodes = response.data.data;
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+			},
+			initData:function(){
+				this.searchClick();
+			},
+			refresh:function(){
+				this.searchClick();
+			},
+			add:function(){
+				this.dialogFormVisible = true;
+				this.detail = {};
+			},
+			edit:function(index,row){
+				this.dialogFormVisible = true;
+				this.detail = row;
+				this.parentNode = new Array();
+				this.findParent(this.treeNodes,row.parentId);
+				this.parentNode = this.parentNode.reverse();
+			},
+			updateDel:function(index,row){
+				var that = this;
+				axios.get("/menu/del/"+row.id)
+				.then(function (response) {
+					that.searchClick();
+					console.log(response);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+			},
+			confirm:function(){
+				this.detail.parentId = this.parentNode[this.parentNode.length-1];
+				var that = this;
+				axios.post("/menu/saveOrUpdate",this.detail)
+				.then(function (response) {
+					console.log(response);
+					that.dialogFormVisible = false;
+					that.searchClick();
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+			},
+			findParent:function(nodes,parentId){
+				if(nodes != null && nodes.length > 0){
+					for(var i = 0; i < nodes.length; i++){
+						if(nodes[i].id == parentId){
+							this.parentNode.push(nodes[i].id);
+							return;
+						}
+					}
+					if(this.parentNode.length <= 0){
+						for(var i = 0; i < nodes.length; i++){
+							var upParentId = nodes[i].id;
+							this.findParent(nodes[i].childs,parentId);
+							if(this.parentNode.length > 0){
+								this.parentNode.push(upParentId);
+								return;
+							}
+						}
+					}
+				}
+			}
+	    },
+	    created: function () {
+	    	this.initData();
+	    },
+	    mounted:function() { 
+	    }
+	}
+	var constructor = Vue.extend(main);
+	var app = new constructor().$mount('#app');
+</script>
+[/@setting.html ]

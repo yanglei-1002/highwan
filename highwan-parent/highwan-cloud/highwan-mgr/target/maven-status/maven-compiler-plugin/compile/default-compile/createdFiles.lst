@@ -1,0 +1,15 @@
+com\crazyplay\highwan\mgr\controller\party\PartyController.class
+com\crazyplay\highwan\mgr\req\PageReq.class
+com\crazyplay\highwan\mgr\service\impl\MenuServiceImpl.class
+com\crazyplay\highwan\mgr\pojo\Menu.class
+com\crazyplay\highwan\mgr\controller\party\PartyCategoryController.class
+com\crazyplay\highwan\mgr\feign\MenuFeign.class
+com\crazyplay\highwan\mgr\service\MenuService.class
+com\crazyplay\highwan\mgr\controller\LoginController.class
+com\crazyplay\highwan\mgr\pojo\BaseEntity.class
+com\crazyplay\highwan\mgr\controller\user\UserController.class
+com\crazyplay\highwan\mgr\req\MenuReq.class
+com\crazyplay\highwan\mgr\dao\MenuMapper.class
+com\crazyplay\highwan\mgr\MgrApplication.class
+com\crazyplay\highwan\mgr\controller\system\MenuController.class
+com\crazyplay\highwan\mgr\feign\PartyCategoryFeign.class

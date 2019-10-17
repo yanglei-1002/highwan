@@ -1,0 +1,10 @@
+com\crazyplay\highwan\api\user\MenuApi.class
+com\crazyplay\highwan\api\vo\req\MenuReq.class
+com\crazyplay\highwan\api\vo\resp\PartyCategoryResp.class
+com\crazyplay\highwan\api\party\PartyApi.class
+com\crazyplay\highwan\api\constant\CloudName.class
+com\crazyplay\highwan\api\vo\req\PageReq.class
+com\crazyplay\highwan\api\vo\req\PartyAddReq.class
+com\crazyplay\highwan\api\vo\req\PartyCategoryAddReq.class
+com\crazyplay\highwan\api\vo\resp\PartyDetailResp.class
+com\crazyplay\highwan\api\party\PartyCategoryApi.class

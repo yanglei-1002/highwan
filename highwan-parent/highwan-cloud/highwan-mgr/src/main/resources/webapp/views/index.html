@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ch">
+	<head>
+		<meta charset="utf-8">
+		<!-- 引入element-ui样式 -->
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		<style>
+		  * {
+	  		margin: 0;
+			padding: 0;
+		  }
+		  .el-container {
+		  	height:100%;
+		  }
+		  .el-header, .el-footer {
+		    background-color: #545c64;
+		    color: #333;
+		    text-align: center;
+		    line-height: 60px;
+		  }
+		  
+		  .el-aside {
+		    background-color: #D3DCE6;
+		    color: #333;
+		    text-align: center;
+		    line-height: 200px;
+		  }
+		  
+		  .el-main {
+		    background-color: #fff;
+		    color: #333;
+		    text-align: center;
+		    line-height: 160px;
+		  }
+		  
+		  body,html{
+			  height:100%;
+			  width: 100%;
+		  }
+		  
+		  body > .el-container {
+		    margin-bottom: 40px;
+		  }
+	</style>
+	</head>
+	<body>
+		<div id="appbody" style="height:100%;width: 100%">
+			<el-container>
+			  <el-header>
+			  	<el-row :gutter="24">
+				  <el-col :span="4">
+				  	<font style="color: #fff;margin-left: -55px;font-size: 22px;display: block;">嗨玩管理平台</font>
+				  </el-col>
+				  <el-col :span="18">
+					<el-menu :default-active="activeIndex" background-color= "rgb(84, 92, 100)"  text-color="#fff" active-text-color="#ffd04b"  mode="horizontal" @select="topMenuSelect">
+						  <el-menu-item :key="menu.id" :index="menu.id" v-for="(menu, index) in topMenus">{{menu.name}}</el-menu-item>
+					</el-menu>
+				  </el-col>
+				  <!-- <el-col :span="2">
+				  	<span style="position: absolute;right:20px;line-height: 60px;">
+						<el-dropdown trigger="hover" @command="settingClick">
+						  <span class="el-dropdown-link" style="color: #fff">
+						  	${userInfo.name}
+						    <i class="el-icon-caret-bottom el-icon--right"></i>
+						  </span>
+						  <el-dropdown-menu slot="dropdown">
+						    <el-dropdown-item class="clearfix" command="updateroombg">
+						      <i class="el-icon-setting"></i>&nbsp;试衣间背景
+						    </el-dropdown-item>
+						    <el-dropdown-item class="clearfix" command="updatepwd">
+						      <i class="el-icon-setting"></i>&nbsp;修改密码
+						    </el-dropdown-item>
+						    <el-dropdown-item class="clearfix" command="exit">
+						     	<i class="el-icon-minus"></i>&nbsp;退出系统
+						    </el-dropdown-item>
+						  </el-dropdown-menu>
+						</el-dropdown>
+					</span>
+				  </el-col> -->
+				</el-row>
+			  </el-header>
+			  <el-container>
+			    <el-aside style="heihgt:100%;width:220px;">
+			    	<el-menu style="height:100%" default-active="0" class="el-menu-vertical-demo" @select="handleSelect">
+<!-- 			    	 多级子菜单 -->
+<!-- 					 <template v-for="(menu, index) in menus" > -->
+<!-- 						  <el-submenu :index="index+''" v-if=" menu.childs && menu.childs.length>0 "> -->
+<!-- 						    <template slot="title">	 -->
+<!-- 						      <span slot="title">{{menu.name}}</span> -->
+<!-- 						    </template> -->
+<!-- 						    <el-menu-item   v-for="(child, index2) in menu.childs" :index="index+'_'+index2">{{child.name}}</el-menu-item>  -->
+<!-- 						  </el-submenu> -->
+<!-- 						  <el-menu-item :index="index+''"  v-else >{{menu.name}}</el-menu-item> -->
+<!-- 					 </template>  -->
+					 
+					 <template v-for="(menu, index) in menus" >
+						  <el-menu-item :index="menu.id" :key="menu.id">{{menu.name}}</el-menu-item>
+					 </template> 
+					</el-menu>
+			    </el-aside>
+			    <el-main style="heihgt:100%;">
+			    	<!-- <el-tabs v-model="activeTab" type="card"  @tab-remove="removeMenuTab" style="margin:0" editable @edit="handleTabsEdit">
+					  <el-tab-pane    v-for="(item, index) in menuTabs"  :key="item.name"
+					    :label="item.title"   :name="item.name"  :closable=item.closable  >
+					      	<iframe  @load="onload" :id="item.name" :src="item.content" width="100%"  :height="screenHeight"  marginwidth="0" marginheight="0" frameborder="0" scrolling="auto"></iframe>
+					  </el-tab-pane>
+					</el-tabs> -->
+					<iframe  @load="onload" :src="iframeUrl" width="100%"  height="100%"  marginwidth="0" marginheight="0" frameborder="0" scrolling="auto"></iframe>
+			    </el-main>
+			  </el-container>
+			</el-container>
+		</div>
+	</body>
+	<!-- 引入vue.js组件库 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<!-- 引入element-ui组件库 -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<!-- 引入axios组件库 -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript">
+	var main = {
+		 data:function(){
+			return{
+			    form: {},
+			    topMenus: [],
+			    menus: [],
+			    activeIndex: '',
+			    screenHeight:'',
+			    iframeUrl:''
+			}
+		  },
+		  methods:{
+			topMenuSelect:function(key, keyPath){
+				for(var i=0;i<this.topMenus.length;i++){
+					if(this.topMenus[i].id == key){
+						this.menus = this.topMenus[i].childs;
+					}
+				}
+			},
+			handleSelect:function(key, keyPath){
+				for(var i=0;i<this.menus.length;i++){
+					if(this.menus[i].id == key){
+						this.iframeUrl = this.menus[i].code;
+					}
+				}
+			},
+			settingClick:function(){
+				
+			},
+		  	onSubmit:function(){
+		  		
+		  	},
+		  	onload:function(){
+		  		
+		  	}
+		  },
+		  created: function () {
+			  var that = this;
+			  axios.get('/menu/menuTree')
+				  .then(function (response) {
+					  that.topMenus = response.data.data;
+ 					if(that.topMenus.length>0){
+ 						that.activeIndex = that.topMenus[0].id;
+ 						that.topMenuSelect(that.activeIndex,that.activeIndex);
+ 					}
+				  })
+				  .catch(function (error) {
+				    console.log(error);
+				  });
+		  },
+		  mounted:function() { 
+// 				window.onresize = function(){
+// 			    	this.screenHeight = document.documentElement.clientHeight-loseHeight;
+// 		    	}
+		    }
+	}
+	var constructor = Vue.extend(main);
+	var appbody = new constructor().$mount('#appbody');
+	</script>
+</html>

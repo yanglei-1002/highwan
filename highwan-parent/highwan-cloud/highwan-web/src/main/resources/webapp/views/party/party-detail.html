@@ -1,0 +1,37 @@
+[#include "/setting.html"]
+[#import "/setting.html" as setting] 
+[@setting.html title="嗨玩网" ]
+[@setting.header /]
+<div class="app_container container" id="app" style="margin: 30px auto;width: 800px;">
+	<template v-if="partyDetail !== undefined">
+		<dl>
+			<dt>{{partyDetail.title}}</dt>
+			<dd><span>时间：</span><span>{{partyDetail.startTime}} 至 {{partyDetail.endTime}}</span></dd>
+			<dd><span>地点：</span><span>{{partyDetail.adress}}</span></dd>
+			<dd><span>费用：</span><span>{{partyDetail.amount}}￥</span></dd>
+			<dd><span>主办方：</span><span>{{partyDetail.userName}}</span></dd>
+		</dl>
+		<div class="party_content" v-html='partyDetail.content'>
+		</div>
+	</template>
+</div>
+<script type="text/javascript">
+	var main ={
+	  data:function(){
+		return{
+		    partyDetail:${partyDetail},
+		}
+	  },
+	  methods:{
+	  },
+	  mounted:function(){
+		  console.log(this.partyDetail);
+	  }
+	};
+	var constructor = Vue.extend(main);
+	var app = new constructor().$mount('#app');
+</script>
+<!-- [@setting.footer /] -->
+[/@setting.html]
+
+

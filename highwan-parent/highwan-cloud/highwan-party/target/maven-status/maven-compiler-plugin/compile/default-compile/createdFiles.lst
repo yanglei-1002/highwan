@@ -1,0 +1,17 @@
+com\crazyplay\highwan\party\dao\PartyContentMapper.class
+com\crazyplay\highwan\party\pojo\PartyCategory.class
+com\crazyplay\highwan\party\PartyApplication.class
+com\crazyplay\highwan\party\service\PartyContentService.class
+com\crazyplay\highwan\party\pojo\PartyContent.class
+com\crazyplay\highwan\party\service\impl\PartyServiceImpl.class
+com\crazyplay\highwan\party\controller\PartyCategoryController.class
+com\crazyplay\highwan\party\controller\PartyTestCtrl.class
+com\crazyplay\highwan\party\service\PartyService.class
+com\crazyplay\highwan\party\service\impl\PartyContentServiceImpl.class
+com\crazyplay\highwan\party\controller\PartyController.class
+com\crazyplay\highwan\party\dao\PartyMapper.class
+com\crazyplay\highwan\party\service\impl\PartyCategoryServiceImpl.class
+com\crazyplay\highwan\party\pojo\Party.class
+com\crazyplay\highwan\party\dao\PartyCategoryMapper.class
+com\crazyplay\highwan\party\service\PartyCategoryService.class
+com\crazyplay\highwan\party\pojo\BaseEntity.class

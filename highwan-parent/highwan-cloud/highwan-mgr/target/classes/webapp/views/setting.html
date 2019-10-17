@@ -1,0 +1,24 @@
+[#assign basePath = request.contextPath]
+[#assign pagesizes ="[20, 40, 80 ,100,200]" ]
+[#assign pagesize ="40" ]
+[#assign currentPageSize =40 ]
+[#macro html title='嗨玩网管理台']
+<!DOCTYPE html>
+<html lang="ch">
+	<head>
+		<meta charset="utf-8">
+		<title>${title}</title>
+		<!-- 引入element-ui样式 -->
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		<!-- 引入vue.js组件库 -->
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<!-- 引入element-ui组件库 -->
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+		<!-- 引入axios组件库 -->
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		[#nested]
+	</body>
+</html>
+[/#macro]

@@ -1,0 +1,103 @@
+[#include "/setting.html"]
+[#import "/setting.html" as setting]
+[@setting.html title="嗨玩网" ]
+[@setting.header /]
+<div class="banner">
+    <div class="banner-in container">
+        <!-- 侧边栏 -->
+        <!-- 		<div class="slidebar"> -->
+        <!-- 			<ul> -->
+        <!-- 				<li><a href="#">嗨玩前端  <span>></span>  </a></li> -->
+        <!-- 				<li><a href="#">嗨玩前端  <span>></span>  </a></li> -->
+        <!-- 				<li><a href="#">嗨玩前端  <span>></span>  </a></li> -->
+        <!-- 				<li><a href="#">嗨玩前端  <span>></span>  </a></li> -->
+        <!-- 				<li><a href="#">嗨玩前端  <span>></span>  </a></li> -->
+        <!-- 				<li><a href="#">嗨玩前端  <span>></span>  </a></li> -->
+        <!-- 				<li><a href="#">嗨玩前端  <span>></span>  </a></li> -->
+        <!-- 				<li><a href="#">嗨玩前端  <span>></span>  </a></li> -->
+        <!-- 				<li><a href="#">嗨玩前端  <span>></span>  </a></li> -->
+        <!-- 			</ul> -->
+        <!-- 		</div> -->
+        <!-- 兴趣推荐 -->
+        <!-- 		<dl class="favorite"> -->
+        <!-- 			<dt>个人推荐</dt> -->
+        <!-- 			<dd> -->
+        <!-- 				<h4>标题</h4> -->
+        <!-- 				<span>类型</span> -->
+        <!-- 			</dd> -->
+        <!-- 			<dd> -->
+        <!-- 				<h4>标题</h4> -->
+        <!-- 				<span>类型</span> -->
+        <!-- 			</dd> -->
+        <!-- 			<dd> -->
+        <!-- 				<h4>标题</h4> -->
+        <!-- 				<span>类型</span> -->
+        <!-- 			</dd> -->
+        <!-- 			<dd> -->
+        <!-- 				<h4>标题</h4> -->
+        <!-- 				<span>类型</span> -->
+        <!-- 			</dd> -->
+        <!-- 		</dl> -->
+    </div>
+</div>
+<div class="recom-party container" id="app">
+    <div class="recom-hd">
+        <h4>精品推荐</h4>
+        <a href="${basePath}/party/list/"> 查看全部</a>
+    </div>
+    <div class="recom-bd clearfix">
+        <ul>
+            <template v-for="(item,index) in recomData">
+                <li @click="toPartyDetail(item.id)">
+                    <div class="party_describe">
+                        <div><span>活动类型:</span><span>{{item.title}}</span>
+                        </div>
+                        <div><span>活动标题:</span><span>{{item.title}}</span>
+                        </div>
+                        <div><span>活动地点:</span><span>{{item.adress}}</span>
+                        </div>
+                        <div><span>活动费用:</span><span>{{item.amount}}￥</span>
+                        </div>
+                        <div><span>活动时间:</span><span>{{item.startTime}}-{{item.endTime}}</span>
+                        </div>
+                    </div>
+                </li>
+            </template>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var main = {
+        data: function () {
+            return {
+                recomData: []
+            }
+        },
+        methods: {
+            initData: function () {
+                var that = this;
+                axios.get("/party/recom")
+                    .then(function (response) {
+                        console.log(response);
+                        that.recomData = response.data.data;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            toPartyDetail: function (id) {
+                /*window.location.href = '${basePath}/party/detail/'+id;*/
+                window.open('${basePath}/party/detail/'+id);
+            }
+        },
+        created: function () {
+            this.initData();
+        },
+        mounted: function () {
+        }
+    };
+    var constructor = Vue.extend(main);
+    var app = new constructor().$mount('#app');
+</script>
+[@setting.footer /]
+[/@setting.html]

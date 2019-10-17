@@ -1,0 +1,16 @@
+server:
+  port: 8888 #eureka默认端口号
+
+eureka:
+  instance:
+    hostname: eureka
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8888/eureka/
+
+
+
+
+

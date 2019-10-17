@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="highwan-party" />
+        <module name="highwan-user" />
+        <module name="highwan-mgr" />
+        <module name="highwan-eureka" />
+        <module name="highwan-mybatis" />
+        <module name="highwan-web" />
+        <module name="highwan-redis" />
+        <module name="highwan-util" />
+        <module name="highwan-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="highwan-api" target="1.8" />
+      <module name="highwan-base" target="1.8" />
+      <module name="highwan-cloud" target="1.8" />
+      <module name="highwan-eureka" target="1.8" />
+      <module name="highwan-mgr" target="1.8" />
+      <module name="highwan-mybatis" target="1.8" />
+      <module name="highwan-parent" target="1.8" />
+      <module name="highwan-party" target="1.8" />
+      <module name="highwan-redis" target="1.8" />
+      <module name="highwan-user" target="1.8" />
+      <module name="highwan-util" target="1.8" />
+      <module name="highwan-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="highwan-api" options="-parameters" />
+      <module name="highwan-eureka" options="-parameters" />
+      <module name="highwan-mgr" options="-parameters" />
+      <module name="highwan-mybatis" options="-parameters" />
+      <module name="highwan-party" options="-parameters" />
+      <module name="highwan-redis" options="-parameters" />
+      <module name="highwan-user" options="-parameters" />
+      <module name="highwan-util" options="-parameters" />
+      <module name="highwan-web" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,6 @@
+com\crazyplay\highwan\web\controller\config\JacksonConfig.class
+com\crazyplay\highwan\web\controller\feign\PartyFeign.class
+com\crazyplay\highwan\web\controller\party\PartyController.class
+com\crazyplay\highwan\web\controller\UeditorController.class
+com\crazyplay\highwan\web\controller\IndexController.class
+com\crazyplay\highwan\web\WebApplication.class

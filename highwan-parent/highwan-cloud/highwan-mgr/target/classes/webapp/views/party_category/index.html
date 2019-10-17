@@ -1,0 +1,169 @@
+[#include "/setting.html"]
+[#import "/setting.html" as setting] 
+[@setting.html title='嗨玩网管理台' ]
+<div id ="app" style="padding:10px;">
+	<div style="padding: 10px 15px;border-bottom:1px solid #ccc;">
+		<el-breadcrumb separator="/">
+		  	<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+		  	<el-breadcrumb-item>活动类型管理</el-breadcrumb-item>
+		</el-breadcrumb>
+  	</div>
+	<div style="padding: 10px 15px">
+    	<div style="margin: 0 auto;width: 700px;border: 1px dotted  #ccc;padding: 20px;">
+    		<div>
+    			<el-button size="small" type="default" icon="el-icon-refresh" @click="refresh" >刷新</el-button> 
+    			<el-button size="small" type="danger" icon="el-icon-delete"  @click="updateDel" >删除</el-button> 
+                <el-button size="small" type="primary"  icon="el-icon-edit"  @click="edit" >编辑</el-button> 
+                <el-button size="small" type="primary"  icon="el-icon-plus"  @click="add" >新增</el-button> 
+    		</div>
+    		<div style="margin-top: 10px">	
+    			<el-input size="small" placeholder="分类名称" icon="search" v-model="filterText"> </el-input>
+<!--     			<el-input size="small" placeholder="分类名称" icon="search" v-model="filterText" :on-icon-click="searchClick" @keyup.enter.native="searchClick"> </el-input> -->
+    		</div>
+    		<div style="margin-top: 10px">	
+    			<el-tree highlight-current :data="treeData" ref="tree"   @node-click="treeClickHander"  :filter-node-method="filterNode"
+    				:props="props"   node-key="id" default-expand-all :expand-on-click-node="false"   > </el-tree>
+    		</div>
+    		<div>	
+    		</div>
+    	</div>
+  	</div>
+  	
+	<el-dialog title="活动分类新增或修改" :visible.sync="dialogFormVisible">
+	  <el-form :model="detail">
+	    <el-form-item label="活动类型名称" label-width="100px">
+	      <el-input v-model="detail.name" autocomplete="off"></el-input>
+	    </el-form-item>
+	    <el-form-item label="活动类型编码" label-width="100px">
+	      <el-input v-model="detail.code" autocomplete="off"></el-input>
+	    </el-form-item>
+	    <el-form-item label="父菜单" label-width="100px">
+	      <el-cascader :options="treeNodes" :props="props" v-model="parentNode" :show-all-levels="false" clearable></el-cascader>
+	    </el-form-item>
+	  </el-form>
+	  <div slot="footer" class="dialog-footer">
+	    <el-button @click="dialogFormVisible = false">取 消</el-button>
+	    <el-button type="primary" @click="confirm">确 定</el-button>
+	  </div>
+	</el-dialog>
+</div>
+<script type="text/javascript">
+	var main = {
+		data:function() {
+			return {
+				treeData:[],
+				searchText:"",
+				dialogFormVisible:false,
+				detail:{},
+				treeNodes:[],
+				parentNode:[],
+				filterText:"",
+				props: {
+			          value: 'id',
+			          label: 'name',
+			          children: 'childs',
+			          checkStrictly: true
+			    	}
+	      	};
+		},
+	    methods: {
+			searchClick:function(){
+				var that = this;
+				axios.get("/party/category/tree")
+					.then(function (response) {
+						console.log(response.data.data);
+						that.treeData = response.data.data;
+						that.treeNodes = response.data.data;
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+			},
+			initData:function(){
+				this.searchClick();
+			},
+			refresh:function(){
+				this.filterText = "";
+				this.searchClick();
+			},
+			add:function(){
+				this.dialogFormVisible = true;
+				this.detail = {};
+			},
+			edit:function(){
+				this.dialogFormVisible = true;
+				this.parentNode = new Array();
+				this.findParent(this.treeNodes,this.detail.parentId);
+				this.parentNode = this.parentNode.reverse();
+			},
+			updateDel:function(){
+				var that = this;
+				if(undefined == that.detail || null == that.detail || undefined==that.detail.id){
+					return;
+				}
+				axios.get("/party/category/del/"+that.detail.id)
+				.then(function (response) {
+					that.searchClick();
+					console.log(response);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+			},
+			confirm:function(){
+				this.detail.parentId = this.parentNode[this.parentNode.length-1];
+				var that = this;
+				axios.post("/party/category/saveOrUpdate",this.detail)
+				.then(function (response) {
+					console.log(response);
+					that.dialogFormVisible = false;
+					that.searchClick();
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+			},
+			findParent:function(nodes,parentId){
+				if(nodes != null && nodes.length > 0){
+					for(var i = 0; i < nodes.length; i++){
+						if(nodes[i].id == parentId){
+							this.parentNode.push(nodes[i].id);
+							return;
+						}
+					}
+					if(this.parentNode.length <= 0){
+						for(var i = 0; i < nodes.length; i++){
+							var upParentId = nodes[i].id;
+							this.findParent(nodes[i].childs,parentId);
+							if(this.parentNode.length > 0){
+								this.parentNode.push(upParentId);
+								return;
+							}
+						}
+					}
+				}
+			},
+			treeClickHander:function(data){
+				this.detail = data;
+			},
+			filterNode:function(value, data) {
+		        if (!value) return true;
+		        return data.name.indexOf(value) !== -1;
+	      	}
+	    },
+	    created: function () {
+	    	this.initData();
+	    },
+	    mounted:function() { 
+	    },
+	    watch: {
+	        filterText(val) {
+	        	this.$refs.tree.filter(val);
+	        }
+	      },
+
+	}
+	var constructor = Vue.extend(main);
+	var app = new constructor().$mount('#app');
+</script>
+[/@setting.html ]

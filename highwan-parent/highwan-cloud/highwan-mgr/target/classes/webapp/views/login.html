@@ -1,0 +1,76 @@
+[#assign basePath = request.contextPath]
+<!DOCTYPE html>
+<html lang="ch">
+	<head>
+		<meta charset="utf-8">
+		<!-- 引入element-ui样式 -->
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			html,body {
+				height: 100%;
+			}
+			body {
+				background-image: url(../images/login.jpg);
+			}
+			.login_container {
+				height: 280px;
+				width: 460px;
+				margin: 16% auto;
+			    border-radius: 15px;
+			    background-color: #fff;
+			}
+			.palt_name {
+			    height: 50px;
+			    line-height: 50px;
+			    text-align: center;
+			    font-size: 16px;
+			    font-weight: bold;
+			}
+			.login_form {
+				height: 230px;
+			    padding-top: 20px;
+	    		box-sizing: border-box;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="login_container">
+			<div class="palt_name">嗨玩管理平台</div>
+			<div class="login_form" id="app">
+				<el-form ref="form" :model="form">
+				  <el-form-item label="用户名" label-width="100px">
+				    <el-input v-model="form.userName" style="width: 80%;"></el-input>
+				  </el-form-item>
+				  <el-form-item label="密码" label-width="100px">
+				    <el-input type="password" v-model="form.passWord" style="width: 80%;"></el-input>
+				  </el-form-item>
+				  <el-form-item>
+				    <el-button type="primary" @click="onSubmit" style="width: 150px;margin: 0 auto;display: block;">登录</el-button>
+				  </el-form-item>
+				</el-form>
+			</div>
+		</div>
+	</body>
+	<!-- 引入vue.js组件库 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<!-- 引入element-ui组件库 -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<script type="text/javascript">
+	var app = new Vue({
+		  el: '#app',
+		  data: {
+		    form: {},
+		    value1:""
+		  },
+		  methods:{
+		  	onSubmit:function(){
+
+		  	}
+		  }
+		});
+	</script>
+</html>

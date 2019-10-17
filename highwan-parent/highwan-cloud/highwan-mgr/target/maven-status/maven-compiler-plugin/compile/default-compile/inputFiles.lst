@@ -1,0 +1,15 @@
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\controller\user\UserController.java
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\controller\LoginController.java
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\req\MenuReq.java
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\pojo\BaseEntity.java
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\service\MenuService.java
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\pojo\Menu.java
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\controller\party\PartyCategoryController.java
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\feign\PartyCategoryFeign.java
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\MgrApplication.java
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\feign\MenuFeign.java
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\controller\system\MenuController.java
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\dao\MenuMapper.java
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\service\impl\MenuServiceImpl.java
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\controller\party\PartyController.java
+G:\workspace\highwan-parent\highwan-cloud\highwan-mgr\src\main\java\com\crazyplay\highwan\mgr\req\PageReq.java

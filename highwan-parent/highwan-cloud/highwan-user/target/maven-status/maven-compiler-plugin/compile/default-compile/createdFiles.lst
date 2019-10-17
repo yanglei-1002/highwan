@@ -1,0 +1,16 @@
+com\crazyplay\highwan\user\MPG$2.class
+com\crazyplay\highwan\user\UserApplication.class
+com\crazyplay\highwan\user\MPG$1.class
+com\crazyplay\highwan\user\controller\MenuController.class
+com\crazyplay\highwan\user\service\UserService.class
+com\crazyplay\highwan\user\pojo\Menu.class
+com\crazyplay\highwan\user\service\MenuService.class
+com\crazyplay\highwan\user\service\impl\UserServiceImpl.class
+com\crazyplay\highwan\user\dao\UserMapper.class
+com\crazyplay\highwan\user\dao\MenuMapper.class
+com\crazyplay\highwan\user\MPG.class
+com\crazyplay\highwan\user\pojo\User.class
+com\crazyplay\highwan\user\MPG$3.class
+com\crazyplay\highwan\user\pojo\BaseEntity.class
+com\crazyplay\highwan\user\controller\UserController.class
+com\crazyplay\highwan\user\service\impl\MenuServiceImpl.class
