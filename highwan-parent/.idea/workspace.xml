@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="df9d04a9-a81c-4a12-b3f3-854bfb9b89d4" name="Default Changelist" comment="" />
+    <list default="true" id="df9d04a9-a81c-4a12-b3f3-854bfb9b89d4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/highwan-cloud/highwan-party/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/highwan-cloud/highwan-party/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/highwan-cloud/highwan-party/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/highwan-cloud/highwan-party/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/highwan-cloud/highwan-party/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/highwan-cloud/highwan-party/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/highwan-cloud/highwan-party/target/classes/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/highwan-cloud/highwan-party/target/classes/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/highwan-cloud/highwan-user/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/highwan-cloud/highwan-user/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/highwan-cloud/highwan-user/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/highwan-cloud/highwan-user/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/highwan-cloud/highwan-user/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/highwan-cloud/highwan-user/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/highwan-cloud/highwan-user/target/classes/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/highwan-cloud/highwan-user/target/classes/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/log.log" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +29,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -33,6 +47,7 @@
     </option>
   </component>
   <component name="ProjectId" id="1SEcuF5xiGKmhMmvpSMqGLpRgD9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
@@ -41,7 +56,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -198,10 +213,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.WebApplication" />
-        <item itemvalue="Spring Boot.PartyApplication" />
-        <item itemvalue="Spring Boot.EurekaServerApplication" />
         <item itemvalue="Spring Boot.MgrApplication" />
+        <item itemvalue="Spring Boot.PartyApplication" />
         <item itemvalue="Spring Boot.UserApplication" />
+        <item itemvalue="Spring Boot.EurekaServerApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -213,17 +228,17 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2d7dff51" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@873afd50" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2d7dff51" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@14f7f4e7" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@873afd50" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@3ade20b4" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@2d7dff51" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@88453a9c" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@873afd50" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@67c66f3f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -243,11 +258,27 @@
       <updated>1571132415252</updated>
       <workItem from="1571132424109" duration="3350000" />
       <workItem from="1571192097150" duration="12628000" />
-      <workItem from="1571276476823" duration="10447000" />
+      <workItem from="1571276476823" duration="11336000" />
+      <workItem from="1571297411665" duration="991000" />
+      <workItem from="1571364749929" duration="259000" />
+      <workItem from="1571379265525" duration="2055000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
