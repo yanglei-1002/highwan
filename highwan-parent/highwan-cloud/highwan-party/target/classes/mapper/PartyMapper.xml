@@ -4,38 +4,41 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.crazyplay.highwan.party.pojo.Party">
-    <result column="id" property="id" />
-    <result column="create_time" property="createTime" javaType="java.time.LocalDateTime" />
-    <result column="create_user_id" property="createUserId" />
-    <result column="update_time" property="updateTime" />
-    <result column="update_user_id" property="updateUserId" />
-    <result column="is_del" property="isDel" />
-        <result column="user_id" property="userId" />
-        <result column="area_id" property="areaId" />
-        <result column="user_name" property="userName" />
-        <result column="title" property="title" />
-        <result column="start_time" property="startTime" />
-        <result column="end_time" property="endTime" />
-        <result column="amount" property="amount" />
-        <result column="adress" property="adress" />
+        <result column="id" property="id"/>
+        <result column="create_time" property="createTime" javaType="java.time.LocalDateTime"/>
+        <result column="create_user_id" property="createUserId"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user_id" property="updateUserId"/>
+        <result column="is_del" property="isDel"/>
+        <result column="user_id" property="userId"/>
+        <result column="area_id" property="areaId"/>
+        <result column="user_name" property="userName"/>
+        <result column="party_category_id" property="partyCategoryId"/>
+        <result column="title" property="title"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="amount" property="amount"/>
+        <result column="address" property="address"/>
     </resultMap>
-    
+
     <resultMap id="partyDetail" type="com.crazyplay.highwan.api.vo.resp.PartyDetailResp">
-    <result column="id" property="id" />
-    <result column="create_time" property="createTime"/>
-    <result column="create_user_id" property="createUserId" />
-    <result column="update_time" property="updateTime" />
-    <result column="update_user_id" property="updateUserId" />
-    <result column="is_del" property="isDel" />
-    <result column="user_id" property="userId" />
-    <result column="area_id" property="areaId" />
-    <result column="user_name" property="userName" />
-    <result column="title" property="title" />
-    <result column="start_time" property="startTime" />
-    <result column="end_time" property="endTime" />
-    <result column="amount" property="amount" />
-    <result column="adress" property="adress" />
-    <result column="content" property="content" />
+        <result column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user_id" property="createUserId"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user_id" property="updateUserId"/>
+        <result column="is_del" property="isDel"/>
+        <result column="user_id" property="userId"/>
+        <result column="area_id" property="areaId"/>
+        <result column="user_name" property="userName"/>
+        <result column="party_category_id" property="partyCategoryId"/>
+        <result column="title" property="title"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="amount" property="amount"/>
+        <result column="address" property="address"/>
+        <result column="content" property="content"/>
+        <result column="party_category_name" property="partyCategoryName"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -48,19 +51,22 @@
         is_del,
         user_id, area_id, user_name, title, start_time, end_time, amount, adress
     </sql>
-    
+
     <select id="getPartyById" parameterType="java.lang.String" resultMap="partyDetail">
-    	select p.*,pc.content
+    	select p.*,pc.content,pcg.name as party_category_name
 		from t_party p 
-		left join t_party_content pc on p.id = pc.party_id
+		left join t_party_content pc on pc.party_id = p.id
+		left join t_party_category pcg on pcg.id = p.party_category_id
 		where p.id = #{id}
     </select>
 
-    <select id="getRecom" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List"/>
-        from t_party
-        where is_del = 0
-        order by start_time desc
+    <select id="getRecom" resultMap="partyDetail">
+        select
+        p.*,pcg.name as party_category_name
+        from t_party p
+        left join t_party_category pcg on pcg.id = p.party_category_id
+        where p.is_del = 0
+        order by p.create_time desc
         limit 10
     </select>
 

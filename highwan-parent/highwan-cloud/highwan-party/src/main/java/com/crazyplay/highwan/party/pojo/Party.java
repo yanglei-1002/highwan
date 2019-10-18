@@ -30,6 +30,11 @@ public class Party extends BaseEntity {
     * 发起人名字
     */
     private String userName;
+
+    /**
+     * 活动类型id
+     */
+    private String partyCategoryId;
  
     /**
     * 活动标题
@@ -54,5 +59,5 @@ public class Party extends BaseEntity {
     /**
     * 活动地址
     */
-    private String adress;
+    private String address;
 }

@@ -20,5 +20,5 @@ public interface PartyMapper extends BaseMapper<Party> {
 
 	PartyDetailResp getPartyById(@Param("id")String id);
 
-    List<Party> getRecom();
+    List<PartyDetailResp> getRecom();
 }

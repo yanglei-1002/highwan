@@ -1,4 +1,4 @@
-package com.crazyplay.highwan.web.controller.config;
+package com.crazyplay.highwan.web.config;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

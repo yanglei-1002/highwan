@@ -1,4 +1,4 @@
-package com.crazyplay.highwan.web.controller.feign;
+package com.crazyplay.highwan.web.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 

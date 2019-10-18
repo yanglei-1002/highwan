@@ -12,10 +12,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,15 +54,7 @@ public class PartyServiceImpl extends ServiceImpl<PartyMapper, Party> implements
 
 	@Override
 	public List<PartyDetailResp> getRecom() {
-		List<PartyDetailResp> partyDetailResps = new ArrayList<>();
-		List<Party> partys = baseMapper.getRecom();
-		if(!CollectionUtils.isEmpty(partys)){
-			partys.forEach(it->{
-				PartyDetailResp partyDetailResp = new PartyDetailResp();
-				BeanUtils.copyProperties(it,partyDetailResp);
-				partyDetailResps.add(partyDetailResp);
-			});
-		}
+		List<PartyDetailResp> partyDetailResps = baseMapper.getRecom();
 		return partyDetailResps;
 	}
 

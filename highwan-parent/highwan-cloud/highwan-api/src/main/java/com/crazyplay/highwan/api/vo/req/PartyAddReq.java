@@ -30,6 +30,11 @@ public class PartyAddReq {
 	private String userName;
 
 	/**
+	 * 活动类型
+	 */
+	private String partyCategoryId;
+
+	/**
 	 * 活动标题
 	 */
 	private String title;
@@ -54,7 +59,7 @@ public class PartyAddReq {
 	/**
 	 * 活动地址
 	 */
-	private String adress;
+	private String address;
 	
 	/**
 	 * 活动内容

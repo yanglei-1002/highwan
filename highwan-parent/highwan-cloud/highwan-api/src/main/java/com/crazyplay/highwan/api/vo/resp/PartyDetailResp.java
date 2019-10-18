@@ -31,6 +31,14 @@ public class PartyDetailResp implements Serializable{
 	 * 发起人名字
 	 */
 	private String userName;
+	/**
+	 * 活动类型id
+	 */
+	private String partyCategoryId;
+	/**
+	 * 活动类型name
+	 */
+	private String partyCategoryName;
 
 	/**
 	 * 活动标题
@@ -57,7 +65,7 @@ public class PartyDetailResp implements Serializable{
 	/**
 	 * 活动地址
 	 */
-	private String adress;
+	private String address;
 	
 	/**
 	 * 活动内容

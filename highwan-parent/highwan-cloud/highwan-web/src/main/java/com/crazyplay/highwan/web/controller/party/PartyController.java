@@ -3,7 +3,7 @@ package com.crazyplay.highwan.web.controller.party;
 import com.crazyplay.highwan.api.vo.req.PartyAddReq;
 import com.crazyplay.highwan.api.vo.resp.PartyDetailResp;
 import com.crazyplay.highwan.util.resp.JSONResult;
-import com.crazyplay.highwan.web.controller.feign.PartyFeign;
+import com.crazyplay.highwan.web.feign.PartyFeign;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
