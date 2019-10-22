@@ -61,6 +61,7 @@
     var main = {
         data: function () {
             return {
+                address:'${address}',
 				addressNode: [],
 				parentNode:[],
 				props: {
@@ -74,10 +75,10 @@
         methods: {
             initData: function () {
                 var that = this;
-                axios.get("/party/recom")
+                axios.get("/area/tree")
                     .then(function (response) {
                         console.log(response);
-                        that.recomData = response.data.data;
+                        that.addressNode = response.data.data;
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -89,6 +90,8 @@
             }
         },
         created: function () {
+            this.initData();
+            console.log(this.address);
         },
         mounted: function () {
         }

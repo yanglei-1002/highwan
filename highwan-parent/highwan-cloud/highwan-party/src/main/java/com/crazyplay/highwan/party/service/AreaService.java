@@ -2,6 +2,9 @@ package com.crazyplay.highwan.party.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.crazyplay.highwan.party.pojo.Area;
+import com.crazyplay.highwan.util.utils.TreeNode;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.crazyplay.highwan.party.pojo.Area;
  */
 public interface AreaService extends IService<Area> {
 
+    List<TreeNode> getAreaTree();
 }
