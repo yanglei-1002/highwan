@@ -2,68 +2,111 @@
 [#macro html title='嗨玩网']
 <!DOCTYPE html>
 <html lang="ch">
-	<head>
-		<meta charset="utf-8">
-		<title>${title}</title>
-		<!-- 引入element-ui样式 -->
-		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-		<!-- 引入自定义样式 -->
-		<link rel="stylesheet" type="text/css" href="${basePath}/css/index.css">
-		<!-- 引入vue.js组件库 -->
-		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-		<!-- 引入element-ui组件库 -->
-		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-		<!-- 配置文件 -->
-	    <script type="text/javascript" src="${basePath}/ueditor/ueditor.config.js"></script>
-	    <!-- 编辑器源码文件 -->
-	    <script type="text/javascript" src="${basePath}/ueditor/ueditor.all.js"></script>
-	    <!-- 引入axios组件库 -->
-		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	</head>
-	<body>
-		[#nested]
-	</body>
+<head>
+    <meta charset="utf-8">
+    <title>${title}</title>
+    <!-- 引入element-ui样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入自定义样式 -->
+    <link rel="stylesheet" type="text/css" href="${basePath}/css/index.css">
+    <!-- 引入vue.js组件库 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- 引入element-ui组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="${basePath}/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="${basePath}/ueditor/ueditor.all.js"></script>
+    <!-- 引入axios组件库 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+[#nested]
+</body>
 </html>
 [/#macro]
 [#macro header]
 <header>
-	<nav>
-		<!-- logo部分 -->
-		<div class="logo">
-			<img src="${basePath}/images/logo3.png" alt="">
-		</div>
-		<!-- 导航栏部分 -->
-		<div class="navbar">
-			<ul>
-				<li><a href="${basePath}/highwan/index">首页</a></li>
-				<li><a href="${basePath}/party/add">发布活动</a></li>
-				<!--<li><a href="#">详情</a></li>
-				<li><a href="#">个人中心</a></li>-->
-			</ul>
-		</div>
-		<!-- 个人中心 -->
-		<div class="personal">
-			<a href="">个人中心 <img src="" alt=""></a>
-			<a href=""><img src="" alt="">杨大帅</a>
-		</div>
-		<!-- 搜索部分 -->
-		<div class="search">
-			<input type="text" placeholder="输入关键词">
-			<input type="submit" value="搜索">
-		</div>
-	</nav>
+    <nav>
+        <!-- logo部分 -->
+        <div class="logo">
+            <img src="${basePath}/images/logo3.png" alt="">
+        </div>
+
+        <div class="address" id="address">
+            <el-cascader v-model="parentNode" :options="addressNode" :props="props" node-key="id"  ref="addressCascader" show-all-levels="false" clearable></el-cascader>
+        </div>
+        <!-- 导航栏部分 -->
+        <div class="navbar">
+            <ul>
+                <li><a href="${basePath}/highwan/index">首页</a></li>
+                <li><a href="${basePath}/party/add">发布活动</a></li>
+                <!--<li><a href="#">详情</a></li>
+                <li><a href="#">个人中心</a></li>-->
+            </ul>
+        </div>
+        <!-- 个人中心 -->
+        <div class="personal">
+            <a href="">个人中心 <img src="" alt=""></a>
+            <a href=""><img src="" alt="">杨大帅</a>
+        </div>
+        <!-- 搜索部分 -->
+        <div class="search">
+            <input type="text" placeholder="输入关键词">
+            <input type="submit" value="搜索">
+        </div>
+    </nav>
 </header>
+<script type="text/javascript">
+    var main = {
+        data: function () {
+            return {
+				addressNode: [],
+				parentNode:[],
+				props: {
+					value: 'id',
+					label: 'name',
+					children: 'childs',
+					checkStrictly: true
+				}
+            }
+        },
+        methods: {
+            initData: function () {
+                var that = this;
+                axios.get("/party/recom")
+                    .then(function (response) {
+                        console.log(response);
+                        that.recomData = response.data.data;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            toPartyDetail: function (id) {
+                /*window.location.href = '${basePath}/party/detail/'+id;*/
+                window.open('${basePath}/party/detail/' + id);
+            }
+        },
+        created: function () {
+        },
+        mounted: function () {
+        }
+    };
+    var constructor = Vue.extend(main);
+    var app = new constructor().$mount('#address');
+</script>
 [/#macro]
 
 [#macro footer]
 <footer>
-	<div class="container footer-in">
-		<div class="footer-l">
-			
-		</div>
-		<div class="footer-r">
-			
-		</div>
-	</div>
+    <div class="container footer-in">
+        <div class="footer-l">
+
+        </div>
+        <div class="footer-r">
+
+        </div>
+    </div>
 </footer>
 [/#macro]
