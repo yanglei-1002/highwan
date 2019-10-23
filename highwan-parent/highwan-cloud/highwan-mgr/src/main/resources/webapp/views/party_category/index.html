@@ -38,7 +38,7 @@
 	      <el-input v-model="detail.code" autocomplete="off"></el-input>
 	    </el-form-item>
 	    <el-form-item label="父菜单" label-width="100px">
-	      <el-cascader :options="treeNodes" :props="props" v-model="parentNode" :show-all-levels="false" clearable></el-cascader>
+	      <el-cascader :options="treeNodes" :props="propTree" v-model="parentNode" :show-all-levels="false" clearable></el-cascader>
 	    </el-form-item>
 	  </el-form>
 	  <div slot="footer" class="dialog-footer">
@@ -60,10 +60,18 @@
 				filterText:"",
 				props: {
 			          value: 'id',
-			          label: 'name',
+			          label: function(data,node){
+						  return data.name + "(" + data.code + ")" ;
+					  },
 			          children: 'childs',
 			          checkStrictly: true
-			    	}
+				},
+				propTree: {
+					value: 'id',
+					label: 'name',
+					children: 'childs',
+					checkStrictly: true
+				}
 	      	};
 		},
 	    methods: {

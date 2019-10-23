@@ -1,6 +1,7 @@
 package com.crazyplay.highwan.web.controller.party;
 
 import com.crazyplay.highwan.api.vo.req.PartyAddReq;
+import com.crazyplay.highwan.api.vo.req.PartyRecomReq;
 import com.crazyplay.highwan.api.vo.resp.PartyDetailResp;
 import com.crazyplay.highwan.util.resp.JSONResult;
 import com.crazyplay.highwan.web.feign.PartyFeign;
@@ -53,10 +54,10 @@ public class PartyController {
 		return JSONResult.successd(saveOrUpdate);
 	}
 
-	@GetMapping("/recom")
+	@PostMapping("/recom")
 	@ResponseBody
-	public JSONResult getRecom(){
-		List<PartyDetailResp> partyDetailResps = partyFeign.getRecom();
+	public JSONResult getRecom(@RequestBody PartyRecomReq partyRecomReq){
+		List<PartyDetailResp> partyDetailResps = partyFeign.getRecom(partyRecomReq);
 		return JSONResult.successd(partyDetailResps);
 	}
 

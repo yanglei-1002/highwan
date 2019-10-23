@@ -1,6 +1,7 @@
 package com.crazyplay.highwan.party.controller;
 
 import com.crazyplay.highwan.api.vo.req.PartyAddReq;
+import com.crazyplay.highwan.api.vo.req.PartyRecomReq;
 import com.crazyplay.highwan.api.vo.resp.PartyDetailResp;
 import com.crazyplay.highwan.party.service.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,9 @@ public class PartyController {
 		return partyDetailResp;
 	}
 
-	@GetMapping("/recom")
-	public List<PartyDetailResp> getRecom(){
-		List<PartyDetailResp> partyDetailResps = partyService.getRecom();
+	@PostMapping("/recom")
+	public List<PartyDetailResp> getRecom(@RequestBody PartyRecomReq partyRecomReq){
+		List<PartyDetailResp> partyDetailResps = partyService.getRecom(partyRecomReq);
 		return partyDetailResps;
 	}
 }

@@ -76,7 +76,7 @@
         methods: {
             initData: function () {
                 var that = this;
-                axios.get("/party/recom")
+                axios.post("/party/recom", {searchText:headApp.searchText})
                     .then(function (response) {
                         console.log(response);
                         that.recomData = response.data.data;
@@ -87,7 +87,7 @@
             },
             toPartyDetail: function (id) {
                 /*window.location.href = '${basePath}/party/detail/'+id;*/
-                window.open('${basePath}/party/detail/'+id);
+                window.open('${basePath}/party/detail/' + id);
             }
         },
         created: function () {

@@ -38,7 +38,7 @@
 		methods: {
 			initData: function () {
 				var that = this;
-				axios.get("/party/recom")
+				axios.post("/party/recom",{})
 						.then(function (response) {
 							console.log(response);
 							that.recomData = response.data.data;

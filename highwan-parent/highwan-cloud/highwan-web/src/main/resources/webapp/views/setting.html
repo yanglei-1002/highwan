@@ -26,15 +26,15 @@
 </html>
 [/#macro]
 [#macro header]
-<header>
+<header id="headApp">
     <nav>
         <!-- logo部分 -->
         <div class="logo">
             <img src="${basePath}/images/logo3.png" alt="">
         </div>
 
-        <div class="address" id="address">
-            <el-cascader v-model="parentNode" :options="addressNode" :props="props" node-key="id"  ref="addressCascader" show-all-levels="false" clearable></el-cascader>
+        <div class="address">
+            <el-cascader v-model="parentNode" :options="addressNode" :props="props" node-key="id"  ref="addressCascader" :show-all-levels="false" clearable></el-cascader>
         </div>
         <!-- 导航栏部分 -->
         <div class="navbar">
@@ -52,8 +52,8 @@
         </div>
         <!-- 搜索部分 -->
         <div class="search">
-            <input type="text" placeholder="输入关键词">
-            <input type="submit" value="搜索">
+            <input type="text" v-model="searchText" placeholder="输入关键词">
+            <input type="submit" value="搜索" @click="search">
         </div>
     </nav>
 </header>
@@ -64,6 +64,7 @@
                 address:'${address}',
 				addressNode: [],
 				parentNode:[],
+                searchText:"",
 				props: {
 					value: 'id',
 					label: 'name',
@@ -79,10 +80,37 @@
                     .then(function (response) {
                         console.log(response);
                         that.addressNode = response.data.data;
+                        that.parentNode = new Array();
+                        that.findParent(that.addressNode,that.address);
+                        that.parentNode = that.parentNode.reverse();
+                        console.log(that.parentNode);
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
+            },
+            search:function(){
+                app.initData();
+            },
+            findParent:function(nodes,parentId){
+                if(nodes != null && nodes.length > 0){
+                    for(var i = 0; i < nodes.length; i++){
+                        if(nodes[i].id == parentId){
+                            this.parentNode.push(nodes[i].id);
+                            return;
+                        }
+                    }
+                    if(this.parentNode.length <= 0){
+                        for(var i = 0; i < nodes.length; i++){
+                            var upParentId = nodes[i].id;
+                            this.findParent(nodes[i].childs,parentId);
+                            if(this.parentNode.length > 0){
+                                this.parentNode.push(upParentId);
+                                return;
+                            }
+                        }
+                    }
+                }
             },
             toPartyDetail: function (id) {
                 /*window.location.href = '${basePath}/party/detail/'+id;*/
@@ -97,7 +125,7 @@
         }
     };
     var constructor = Vue.extend(main);
-    var app = new constructor().$mount('#address');
+    var headApp = new constructor().$mount('#headApp');
 </script>
 [/#macro]
 

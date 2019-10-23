@@ -1,6 +1,7 @@
 package com.crazyplay.highwan.party.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.crazyplay.highwan.api.vo.req.PartyRecomReq;
 import com.crazyplay.highwan.api.vo.resp.PartyDetailResp;
 import com.crazyplay.highwan.party.pojo.Party;
 
@@ -20,5 +21,5 @@ public interface PartyMapper extends BaseMapper<Party> {
 
 	PartyDetailResp getPartyById(@Param("id")String id);
 
-    List<PartyDetailResp> getRecom();
+    List<PartyDetailResp> getRecom(@Param("partyRecomReq") PartyRecomReq partyRecomReq,@Param("areaIds") List<String> areaIds,@Param("partyCategoryIds") List<String> partyCategoryIds);
 }
