@@ -2,6 +2,7 @@ package com.crazyplay.highwan.api.party;
 
 import com.crazyplay.highwan.api.vo.req.PartyAddReq;
 import com.crazyplay.highwan.api.vo.req.PartyRecomReq;
+import com.crazyplay.highwan.api.vo.req.PartyReq;
 import com.crazyplay.highwan.api.vo.resp.PartyDetailResp;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,11 +13,14 @@ import java.util.List;
 public interface PartyApi {
 	
 	@RequestMapping("/party/saveOrUpdate")
-	public boolean saveOrUpdate(@RequestBody PartyAddReq partyAddReq);
+	boolean saveOrUpdate(@RequestBody PartyAddReq partyAddReq);
 	
 	@RequestMapping("/party/detail/{id}")
-	public PartyDetailResp getPartyById(@PathVariable("id") String id);
+	PartyDetailResp getPartyById(@PathVariable("id") String id);
 
 	@RequestMapping("/party/recom")
-    List<PartyDetailResp> getRecom(PartyRecomReq partyRecomReq);
+    List<PartyDetailResp> getRecom(@RequestBody PartyRecomReq partyRecomReq);
+
+	@RequestMapping("/party/list")
+    List<PartyDetailResp> list(@RequestBody PartyReq partyReq);
 }

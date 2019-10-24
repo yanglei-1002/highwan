@@ -12,9 +12,7 @@
   	<module>highwan-party</module>
   	<module>highwan-web</module>
   	<module>highwan-mgr</module>
-  	
   	<module>highwan-api</module>
-  	
   	<module>highwan-eureka</module>
   </modules>
 </project>
